@@ -4,12 +4,12 @@ import instances.Instances;
 import utils.ArrayList;
 import enums.GameStateEnum;
 
-public class Flow {
+public class FlowController {
 
 	private ArrayList<GameStateEnum> gameStateNormalTurn = new ArrayList<>();
 	private ArrayList<GameStateEnum> gameStateResolving = new ArrayList<>();
 
-	public Flow() {
+	public FlowController() {
 
 		createGameStateNormalTurn();
 
