@@ -22,7 +22,7 @@ public class Timer {
 		public void fireEvent();
 	}
 
-	public void startTimer() {
+	public void start() {
 
 		this.isRunning.set(true);
 		this.timerClass = new TimerClass();
@@ -63,7 +63,7 @@ public class Timer {
 		}
 	}
 
-	public void stopTimer() {
+	public void stop() {
 		this.isRunning.set(false);
 
 		if (this.timerClass == null)
@@ -94,7 +94,7 @@ public class Timer {
 
 			@Override
 			public void run() {
-				stopTimer();
+				stop();
 			}
 		}));
 	}
