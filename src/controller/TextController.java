@@ -39,13 +39,6 @@ public class TextController {
 
 	}
 
-	public void showText(ArrayList<TextEnum> arrayList) {
-
-		for (TextEnum textEnum : arrayList)
-			showText(textEnum);
-
-	}
-
 	private void showText() {
 
 		double x = this.coordinates.x();

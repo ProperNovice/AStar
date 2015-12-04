@@ -3,7 +3,8 @@ package enums;
 public enum TextEnum {
 
 	CONTINUE("Continue", TextTypeEnum.OPTION),
-	
+	RESTART("Restart", TextTypeEnum.OPTION),
+
 	;
 
 	private String string = null;
