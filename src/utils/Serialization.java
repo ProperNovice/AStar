@@ -4,21 +4,21 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 public class Serialization {
 
 	private static String textFile = "txt.txt";
 
-	public Serialization() {
+	private Serialization() {
+
 	}
 
-	public static void writeToFile(ArrayList<Object> objects) {
+	public static void writeToFile(Object object) {
 
 		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(
 				new FileOutputStream(textFile))) {
 
-			objectOutputStream.writeObject(objects);
+			objectOutputStream.writeObject(object);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -26,16 +26,14 @@ public class Serialization {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	public static ArrayList<Object> readFromFile() {
+	public static Object readFromFile() {
 
 		try (ObjectInputStream objectInputStream = new ObjectInputStream(
 				new FileInputStream(textFile))) {
 
-			ArrayList<Object> objects = (ArrayList<Object>) objectInputStream
-					.readObject();
+			Object object = (Object) objectInputStream.readObject();
 
-			return objects;
+			return object;
 
 		} catch (Exception e) {
 			e.printStackTrace();

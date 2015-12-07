@@ -35,7 +35,7 @@ public class File {
 
 			while (!list.isEmpty()) {
 
-				bufferedWriter.write(list.remove(0));
+				bufferedWriter.write(list.removeFirst());
 				bufferedWriter.newLine();
 
 			}
