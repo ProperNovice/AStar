@@ -4,10 +4,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Serialization {
 
 	private static String textFile = "txt.txt";
+	private static Path path = Paths.get(textFile);
 
 	private Serialization() {
 
@@ -27,6 +32,13 @@ public class Serialization {
 	}
 
 	public static Object readFromFile() {
+
+		if (!Files.exists(path, new LinkOption[] { LinkOption.NOFOLLOW_LINKS })) {
+
+			Logger.logNewLine("file does not exist");
+			ShutDown.execute();
+
+		}
 
 		try (ObjectInputStream objectInputStream = new ObjectInputStream(
 				new FileInputStream(textFile))) {
