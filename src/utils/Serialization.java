@@ -33,13 +33,6 @@ public class Serialization {
 
 	public static Object readFromFile() {
 
-		if (!Files.exists(path, new LinkOption[] { LinkOption.NOFOLLOW_LINKS })) {
-
-			Logger.logNewLine("file does not exist");
-			ShutDown.execute();
-
-		}
-
 		try (ObjectInputStream objectInputStream = new ObjectInputStream(
 				new FileInputStream(textFile))) {
 
@@ -53,6 +46,11 @@ public class Serialization {
 
 		return null;
 
+	}
+
+	public static boolean fileExists() {
+		return Files.exists(path,
+				new LinkOption[] { LinkOption.NOFOLLOW_LINKS });
 	}
 
 }
