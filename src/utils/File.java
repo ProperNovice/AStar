@@ -14,15 +14,6 @@ public class File {
 
 	}
 
-	public static void createFileIfItDoesntExist() {
-
-		if (file.exists())
-			return;
-
-		createNewFile();
-
-	}
-
 	public static void writeToFile(ArrayList<String> list) {
 
 		if (file.exists())
