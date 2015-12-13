@@ -7,4 +7,9 @@ public class ShutDown {
 		System.exit(0);
 	}
 
+	public static void execute(String log) {
+		Logger.logNewLine(log);
+		execute();
+	}
+
 }
