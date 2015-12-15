@@ -1,5 +1,9 @@
-/utils/
 /controller/
-/gameState/
 /enums/
+/gameState/
 /gui/
+/images/
+/instances/
+/interfaces/
+/mp3/
+/utils/

@@ -15,7 +15,7 @@ import utils.Logger;
 import utils.ShutDown;
 import enums.Dimensions;
 
-public class FX extends Application {
+public class AStar extends Application {
 
 	private Panel panel = null;
 
@@ -52,7 +52,7 @@ public class FX extends Application {
 		primaryStage.setHeight(height);
 		primaryStage.setResizable(false);
 
-		primaryStage.setTitle("FX");
+		primaryStage.setTitle("AStar");
 
 		primaryStage
 				.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2);
