@@ -3,6 +3,8 @@ package enums;
 public enum Credentials {
 
 	TEXT_HEIGHT(50),
+	CARTESIAN(10),
+	DIAGONAL(14),
 
 	;
 

@@ -3,6 +3,7 @@ package enums;
 public enum Coordinates {
 
 	TEXT_PANEL(50, 50),
+	BOX_FIRST(Dimensions.GAP_BETWEEN_BORDERS.x(), Dimensions.GAP_BETWEEN_BORDERS.y()),
 
 	;
 

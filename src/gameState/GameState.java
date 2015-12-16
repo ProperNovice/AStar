@@ -1,5 +1,6 @@
 package gameState;
 
+import model.Box;
 import instances.Instances;
 import javafx.scene.input.KeyCode;
 import controller.Controller;
@@ -22,6 +23,10 @@ public abstract class GameState {
 	}
 
 	public void handleKeyPressed(KeyCode keyCode) {
+
+	}
+
+	public void handleBoxPressed(Box box) {
 
 	}
 

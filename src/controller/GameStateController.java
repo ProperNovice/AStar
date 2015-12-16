@@ -1,8 +1,12 @@
 package controller;
 
+import model.Box;
 import enums.GameStateEnum;
 import enums.TextEnum;
 import gameState.GameState;
+import gameState.SetBlockBox;
+import gameState.SetEndBox;
+import gameState.SetStartBox;
 import gameState.StartGame;
 import javafx.scene.input.KeyCode;
 import utils.ArrayList;
@@ -16,6 +20,9 @@ public class GameStateController {
 	public GameStateController() {
 
 		this.gameStates.add(new StartGame(GameStateEnum.START_GAME));
+		this.gameStates.add(new SetStartBox(GameStateEnum.SET_START_BOX));
+		this.gameStates.add(new SetEndBox(GameStateEnum.SET_END_BOX));
+		this.gameStates.add(new SetBlockBox(GameStateEnum.SET_BLOCK_BOX));
 
 	}
 
@@ -46,6 +53,10 @@ public class GameStateController {
 
 	public void handleKeyPressed(KeyCode keyCode) {
 		this.currentGameState.handleKeyPressed(keyCode);
+	}
+
+	public void handleBoxPressed(Box box) {
+		this.currentGameState.handleBoxPressed(box);
 	}
 
 }

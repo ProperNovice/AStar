@@ -7,6 +7,7 @@ public class Controller {
 	private GameStateController gameStateController = null;
 	private TextController textController = null;
 	private FlowController flowController = null;
+	private BoxController boxController = null;
 
 	public Controller() {
 		createInstances();
@@ -19,6 +20,7 @@ public class Controller {
 		this.gameStateController = new GameStateController();
 		this.textController = new TextController();
 		this.flowController = new FlowController();
+		this.boxController = new BoxController();
 
 	}
 
@@ -32,6 +34,10 @@ public class Controller {
 
 	public FlowController flowController() {
 		return this.flowController;
+	}
+
+	public BoxController boxController() {
+		return this.boxController;
 	}
 
 }

@@ -11,6 +11,8 @@ public class StartGame extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
+		super.controller.flowController().proceedToNextPhase();
+
 	}
 
 }
