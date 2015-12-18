@@ -8,6 +8,8 @@ public class BoxController {
 
 	private ArrayList<ArrayList<Box>> boxes = new ArrayList<>();
 	private ArrayList<Box> blocks = new ArrayList<>();
+	private ArrayList<Box> closed = new ArrayList<>();
+	private ArrayList<Box> toOpen = new ArrayList<>();
 	private Box start = null;
 	private Box end = null;
 
@@ -35,6 +37,7 @@ public class BoxController {
 
 	public void setStart(Box box) {
 		this.start = box;
+		this.toOpen.add(box);
 		box.setStartTextColor();
 	}
 
@@ -46,6 +49,10 @@ public class BoxController {
 	public void setBlock(Box box) {
 		this.blocks.add(box);
 		box.setBlockColor();
+	}
+
+	public void setClosed(Box box) {
+		this.closed.add(box);
 	}
 
 	public boolean isStartEndBlock(Box box) {

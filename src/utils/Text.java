@@ -117,6 +117,10 @@ public class Text implements Node {
 		PlatformFX.runLater(() -> this.text.setText(text));
 	}
 
+	public final void setText(final int text) {
+		PlatformFX.runLater(() -> this.text.setText(Integer.toString(text)));
+	}
+
 	protected final void setFont(final int value) {
 		PlatformFX.runLater(() -> this.text.setFont(new Font(value)));
 	}

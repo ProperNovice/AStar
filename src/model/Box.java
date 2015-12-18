@@ -13,12 +13,15 @@ public class Box implements EventHandlerAble {
 	private int row, column;
 	private double xCoordinate, yCoordinate;
 	private Rectangle rectangle = null;
+	private int gCost, hCost, fCost;
+	private Text gCostText, hCostText, fCostText;
 
 	public Box(int row, int column) {
 
 		this.row = row;
 		this.column = column;
 		createRectangle();
+		createCostTexts();
 
 	}
 
@@ -44,6 +47,23 @@ public class Box implements EventHandlerAble {
 		this.rectangle.setStroke(null);
 
 		this.rectangle.setEventHandler(this);
+
+	}
+
+	private void createCostTexts() {
+
+		this.gCostText = getcostsText();
+		this.hCostText = getcostsText();
+		this.fCostText = getcostsText();
+
+	}
+
+	private Text getcostsText() {
+
+		Text text = new Text(0);
+		text.setVisible(false);
+		text.setHeight(Dimensions.BOX.y() / 3);
+		return text;
 
 	}
 
@@ -89,6 +109,22 @@ public class Box implements EventHandlerAble {
 
 		text.relocate(x, y);
 
+	}
+	
+	public void setGCostUpdateTexts(int gCost) {
+		this.gCost = gCost;
+	}
+	
+	public void setHCostUpdateTexts(int hCost) {
+		this.hCost = hCost;
+	}
+	
+	private void updateTexts() {
+		
+		this.fCost = this.gCost + this.hCost;
+		
+		this.gCostText.setText(this.gCost);
+		
 	}
 
 }
