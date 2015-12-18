@@ -7,5 +7,6 @@ public enum GameStateEnum {
 	SET_END_BOX,
 	SET_BLOCK_BOX,
 	CHOOSE_LOWEST_F_COST_BOX,
+	PATH_FOUND,
 
 }

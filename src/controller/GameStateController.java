@@ -5,6 +5,7 @@ import enums.GameStateEnum;
 import enums.TextEnum;
 import gameState.ChooseLowestFCostBox;
 import gameState.GameState;
+import gameState.PathFound;
 import gameState.SetBlockBox;
 import gameState.SetEndBox;
 import gameState.SetStartBox;
@@ -26,6 +27,7 @@ public class GameStateController {
 		this.gameStates.add(new SetBlockBox(GameStateEnum.SET_BLOCK_BOX));
 		this.gameStates.add(new ChooseLowestFCostBox(
 				GameStateEnum.CHOOSE_LOWEST_F_COST_BOX));
+		this.gameStates.add(new PathFound(GameStateEnum.PATH_FOUND));
 
 	}
 

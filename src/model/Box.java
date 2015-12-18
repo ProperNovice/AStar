@@ -13,8 +13,9 @@ public class Box implements EventHandlerAble {
 	private int row, column;
 	private double xCoordinate, yCoordinate;
 	private Rectangle rectangle = null;
-	private int gCost = -1, hCost, fCost;
+	private int gCost = 0, hCost, fCost;
 	private Text gCostText, hCostText, fCostText;
+	private Box parent = null;
 
 	public Box(int row, int column) {
 
@@ -87,12 +88,12 @@ public class Box implements EventHandlerAble {
 
 	public void setStartTextColor() {
 		setStartEndText("s");
-		this.rectangle.setFill(Color.AQUA);
+		setPathColor();
 	}
 
 	public void setEndTextColor() {
 		setStartEndText("e");
-		this.rectangle.setFill(Color.AQUA);
+		setPathColor();
 	}
 
 	public void setBlockColor() {
@@ -101,6 +102,10 @@ public class Box implements EventHandlerAble {
 
 	public void setToOpenColor() {
 		this.rectangle.setFill(Color.GREEN);
+	}
+
+	public void setLowestFCostColor() {
+		this.rectangle.setFill(Color.WHEAT);
 	}
 
 	public void setClosedColor() {
@@ -165,6 +170,18 @@ public class Box implements EventHandlerAble {
 
 	public int getFCost() {
 		return this.fCost;
+	}
+
+	public void setParent(Box box) {
+		this.parent = box;
+	}
+
+	public Box getParent() {
+		return this.parent;
+	}
+	
+	public void setPathColor() {
+		this.rectangle.setFill(Color.AQUA);
 	}
 
 }

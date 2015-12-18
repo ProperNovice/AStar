@@ -11,6 +11,7 @@ public class BoxController {
 	private ArrayList<Box> blocks = new ArrayList<>();
 	private ArrayList<Box> toOpen = new ArrayList<>();
 	private ArrayList<Box> closed = new ArrayList<>();
+	private ArrayList<Box> lowestFCost = new ArrayList<>();
 	private Box start = null;
 	private Box end = null;
 
@@ -44,7 +45,6 @@ public class BoxController {
 
 	public void setEnd(Box box) {
 		this.end = box;
-		this.closed.add(this.end);
 		box.setEndTextColor();
 	}
 
@@ -67,34 +67,42 @@ public class BoxController {
 	}
 
 	public void openStartAdjacentBoxes() {
-
-		this.closed.add(this.start);
-		this.toOpen.remove(this.start);
-
+		closeBox(this.start);
+		this.start.setStartTextColor();
 		openAdjacencies(this.start);
+	}
+
+	public void closeBox(Box box) {
+
+		this.toOpen.remove(box);
+		this.closed.add(box);
+		box.setClosedColor();
 
 	}
 
 	public void openAdjacencies(Box boxOriginal) {
 
-		ArrayList<Box> boxes = getAdjacencies(this.start);
-
-		for (Box box : boxes.clone())
-			if (box == null)
-				boxes.remove(box);
-			else if (this.blocks.contains(box))
-				boxes.remove(box);
+		ArrayList<Box> boxes = getAdjacenciesActive(boxOriginal);
 
 		for (Box boxTemp : boxes) {
 
-			this.toOpen.add(boxTemp);
+			int gCost = getGCost(boxOriginal, boxTemp);
+
+			if (this.toOpen.contains(boxTemp))
+				if (boxTemp.getGCost() < gCost)
+					continue;
+
+			if (!this.toOpen.contains(boxTemp))
+				this.toOpen.add(boxTemp);
+
 			boxTemp.setToOpenColor();
 
-			int gCost = getGCost(boxOriginal, boxTemp);
 			boxTemp.setGCostUpdateTexts(gCost);
 
 			int hCost = getHCost(boxTemp);
 			boxTemp.setHCostUpdateTexts(hCost);
+
+			boxTemp.setParent(boxOriginal);
 
 		}
 
@@ -102,7 +110,7 @@ public class BoxController {
 
 	private int getGCost(Box boxOriginal, Box boxTemp) {
 
-		int gCost;
+		int gCost = boxOriginal.getGCost();
 
 		int rowOriginal = boxOriginal.getRow();
 		int columnOriginal = boxOriginal.getColumn();
@@ -113,9 +121,9 @@ public class BoxController {
 		int boxColumnDif = (int) Math.abs(boxColumn - columnOriginal);
 
 		if (boxRowDif + boxColumnDif == 1)
-			gCost = Credentials.CARTESIAN.credential();
+			gCost += Credentials.CARTESIAN.credential();
 		else
-			gCost = Credentials.DIAGONAL.credential();
+			gCost += Credentials.DIAGONAL.credential();
 
 		return gCost;
 
@@ -146,7 +154,7 @@ public class BoxController {
 
 	}
 
-	private ArrayList<Box> getAdjacencies(Box box) {
+	private ArrayList<Box> getAdjacenciesActive(Box box) {
 
 		int row = box.getRow();
 		int column = box.getColumn();
@@ -161,6 +169,14 @@ public class BoxController {
 		boxes.add(getBoxWithCoordinates(row + 1, column - 1));
 		boxes.add(getBoxWithCoordinates(row + 1, column));
 		boxes.add(getBoxWithCoordinates(row + 1, column + 1));
+
+		for (Box boxTemp : boxes.clone())
+			if (boxTemp == null)
+				boxes.remove(boxTemp);
+			else if (this.blocks.contains(boxTemp))
+				boxes.remove(boxTemp);
+			else if (this.closed.contains(boxTemp))
+				boxes.remove(boxTemp);
 
 		return boxes;
 
@@ -181,6 +197,62 @@ public class BoxController {
 			return null;
 
 		return this.boxes.get(row).get(column);
+
+	}
+
+	public void createLowestFCostList() {
+
+		this.lowestFCost.clear();
+		this.lowestFCost.addAll(this.toOpen);
+
+		int fCostLowest = this.lowestFCost.getFirst().getFCost();
+
+		for (Box box : this.lowestFCost)
+			if (box.getFCost() < fCostLowest)
+				fCostLowest = box.getFCost();
+
+		for (Box box : this.lowestFCost.clone())
+			if (box.getFCost() > fCostLowest)
+				this.lowestFCost.remove(box);
+
+		for (Box box : this.lowestFCost)
+			box.setLowestFCostColor();
+
+	}
+
+	public boolean isLowestFCostList(Box box) {
+		return this.lowestFCost.contains(box);
+	}
+
+	public boolean pathFound(Box box) {
+		return getAdjacenciesActive(box).contains(this.end);
+	}
+
+	public void setEndPrent(Box box) {
+		this.end.setParent(box);
+	}
+
+	public void setBoxesToOpenColor() {
+		for (Box box : this.lowestFCost)
+			box.setToOpenColor();
+	}
+
+	public void showPath() {
+		showPath(this.end);
+	}
+
+	private void showPath(Box box) {
+
+		System.out.println("a");
+
+		box.setPathColor();
+
+		Box parent = box.getParent();
+
+		if (parent == null)
+			return;
+
+		showPath(parent);
 
 	}
 
