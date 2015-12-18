@@ -21,8 +21,20 @@ public class SetBlockBox extends GameState {
 			super.controller.boxController().setBlock(box);
 
 		else {
-			super.controller.boxController().openStartAdjacentBoxes();
+
+			Box start = super.controller.boxController().getStart();
+
+			if (super.controller.boxController().pathFound(start)) {
+
+				super.controller.boxController().setEndParent(start);
+				super.controller.flowController().addGameStateFirst(
+						GameStateEnum.PATH_FOUND);
+
+			} else
+				super.controller.boxController().openStartAdjacentBoxes();
+
 			super.controller.flowController().proceedToNextPhase();
+
 		}
 
 	}

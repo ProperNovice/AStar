@@ -228,7 +228,7 @@ public class BoxController {
 		return getAdjacenciesActive(box).contains(this.end);
 	}
 
-	public void setEndPrent(Box box) {
+	public void setEndParent(Box box) {
 		this.end.setParent(box);
 	}
 
@@ -243,8 +243,6 @@ public class BoxController {
 
 	private void showPath(Box box) {
 
-		System.out.println("a");
-
 		box.setPathColor();
 
 		Box parent = box.getParent();
@@ -254,6 +252,10 @@ public class BoxController {
 
 		showPath(parent);
 
+	}
+
+	public Box getStart() {
+		return this.start;
 	}
 
 }

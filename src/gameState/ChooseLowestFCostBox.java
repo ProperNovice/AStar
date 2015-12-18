@@ -27,7 +27,7 @@ public class ChooseLowestFCostBox extends GameState {
 
 		if (super.controller.boxController().pathFound(box)) {
 
-			super.controller.boxController().setEndPrent(box);
+			super.controller.boxController().setEndParent(box);
 			super.controller.flowController().addGameStateFirst(
 					GameStateEnum.PATH_FOUND);
 
