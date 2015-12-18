@@ -44,16 +44,13 @@ public class BoxController {
 
 	public void setEnd(Box box) {
 		this.end = box;
+		this.closed.add(this.end);
 		box.setEndTextColor();
 	}
 
 	public void setBlock(Box box) {
 		this.blocks.add(box);
 		box.setBlockColor();
-	}
-
-	public void setClosed(Box box) {
-		this.closed.add(box);
 	}
 
 	public boolean isStartEndBlock(Box box) {
@@ -70,7 +67,12 @@ public class BoxController {
 	}
 
 	public void openStartAdjacentBoxes() {
+
+		this.closed.add(this.start);
+		this.toOpen.remove(this.start);
+
 		openAdjacencies(this.start);
+
 	}
 
 	public void openAdjacencies(Box boxOriginal) {
@@ -90,7 +92,7 @@ public class BoxController {
 
 			int gCost = getGCost(boxOriginal, boxTemp);
 			boxTemp.setGCostUpdateTexts(gCost);
-			
+
 			int hCost = getHCost(boxTemp);
 			boxTemp.setHCostUpdateTexts(hCost);
 

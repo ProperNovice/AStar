@@ -3,6 +3,7 @@ package controller;
 import model.Box;
 import enums.GameStateEnum;
 import enums.TextEnum;
+import gameState.ChooseLowestFCostBox;
 import gameState.GameState;
 import gameState.SetBlockBox;
 import gameState.SetEndBox;
@@ -23,6 +24,8 @@ public class GameStateController {
 		this.gameStates.add(new SetStartBox(GameStateEnum.SET_START_BOX));
 		this.gameStates.add(new SetEndBox(GameStateEnum.SET_END_BOX));
 		this.gameStates.add(new SetBlockBox(GameStateEnum.SET_BLOCK_BOX));
+		this.gameStates.add(new ChooseLowestFCostBox(
+				GameStateEnum.CHOOSE_LOWEST_F_COST_BOX));
 
 	}
 

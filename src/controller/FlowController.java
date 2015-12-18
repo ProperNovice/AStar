@@ -13,9 +13,9 @@ public class FlowController {
 
 		createGameStateNormalTurn();
 
-		this.gameStateNormalTurn.add(GameStateEnum.SET_START_BOX);
-		this.gameStateNormalTurn.add(GameStateEnum.SET_END_BOX);
-		this.gameStateNormalTurn.add(GameStateEnum.SET_BLOCK_BOX);
+		this.gameStateResolving.add(GameStateEnum.SET_START_BOX);
+		this.gameStateResolving.add(GameStateEnum.SET_END_BOX);
+		this.gameStateResolving.add(GameStateEnum.SET_BLOCK_BOX);
 
 	}
 
@@ -36,6 +36,8 @@ public class FlowController {
 	}
 
 	public void createGameStateNormalTurn() {
+
+		this.gameStateNormalTurn.add(GameStateEnum.CHOOSE_LOWEST_F_COST_BOX);
 
 	}
 
