@@ -2,10 +2,9 @@ package utils;
 
 import gui.PanelGame;
 import instances.Instances;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import utils.EventHandler.EventHandlerAble;
 
 public class Text implements Node {
 
@@ -101,16 +100,18 @@ public class Text implements Node {
 		PlatformFX.runLater(() -> this.text.relocate(x, y));
 	}
 
-	public final void setOnMouseEntered(EventHandler<? super MouseEvent> value) {
-		PlatformFX.runLater(() -> this.text.setOnMouseEntered(value));
-	}
+	public void setEventHandler(EventHandlerAble eventHandlerAble) {
 
-	public final void setOnMouseExited(EventHandler<? super MouseEvent> value) {
-		PlatformFX.runLater(() -> this.text.setOnMouseExited(value));
-	}
+		PlatformFX.runLater(() -> {
 
-	public final void setOnMousePressed(EventHandler<? super MouseEvent> value) {
-		PlatformFX.runLater(() -> this.text.setOnMousePressed(value));
+			EventHandler eventHandler = new EventHandler(eventHandlerAble);
+
+			this.text.setOnMouseEntered(eventHandler);
+			this.text.setOnMouseExited(eventHandler);
+			this.text.setOnMousePressed(eventHandler);
+
+		});
+
 	}
 
 	public final void setText(final String text) {

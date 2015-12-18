@@ -13,6 +13,10 @@ public class FlowController {
 
 		createGameStateNormalTurn();
 
+		this.gameStateNormalTurn.add(GameStateEnum.SET_START_BOX);
+		this.gameStateNormalTurn.add(GameStateEnum.SET_END_BOX);
+		this.gameStateNormalTurn.add(GameStateEnum.SET_BLOCK_BOX);
+
 	}
 
 	public void proceedToNextPhase() {
@@ -32,10 +36,6 @@ public class FlowController {
 	}
 
 	public void createGameStateNormalTurn() {
-
-		this.gameStateNormalTurn.add(GameStateEnum.SET_START_BOX);
-		this.gameStateNormalTurn.add(GameStateEnum.SET_END_BOX);
-		this.gameStateNormalTurn.add(GameStateEnum.SET_BLOCK_BOX);
 
 	}
 

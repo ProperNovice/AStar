@@ -16,11 +16,14 @@ public class SetBlockBox extends GameState {
 
 	@Override
 	public void handleBoxPressed(Box box) {
-		
-		if (super.controller.boxController().isStartEndBlock(box))
-			return;
 
-		super.controller.boxController().setBlock(box);
+		if (!super.controller.boxController().isStartEndBlock(box))
+			super.controller.boxController().setBlock(box);
+
+		else {
+			super.controller.boxController().openStartAdjacentBoxes();
+			super.controller.flowController().proceedToNextPhase();
+		}
 
 	}
 
